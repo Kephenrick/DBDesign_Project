@@ -12,11 +12,10 @@
     <h1>Login</h1>
     <a href="/">back to home</a>
     <h3>{{ text }}</h3>
-    <form action="/login" method="post">
-        <input type="text" name="username" id="" placeholder="Username">
-        <input type="password" name="password" id="" placeholder="Password">
+    <form action="/login/admin" method="post">
+        <input type="text" name="StaffUsername" id="" placeholder="Staff Username">
+        <input type="password" name="StaffPassword" id="" placeholder="Password">
         <input type="submit" value="Login">
-        <p>Don't have an account? <a href="/register">Register</a></p>
     </form>
 </body>
 </html>
