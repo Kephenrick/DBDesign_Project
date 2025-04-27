@@ -9,14 +9,22 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Login</h1>
-    <a href="/">back to home</a>
-    <h3>{{ text }}</h3>
-    <form action="/login" method="post">
-        <input type="text" name="GuestUsername" id="" placeholder="Guest Username">
-        <input type="password" name="GuestPassword" id="" placeholder="Password">
-        <input type="submit" value="Login">
-        <p>Don't have an account? <a href="/register">Register</a></p>
-    </form>
+    {% extends 'sidebar.html' %}
+
+    {% block content %}
+    
+    <div class="content">
+        <h1>Login</h1>
+        <a href="/">back to home</a>
+        <h3>{{ text }}</h3>
+        <form action="/login" method="post">
+            <input type="text" name="GuestUsername" id="" placeholder="Guest Username">
+            <input type="password" name="GuestPassword" id="" placeholder="Password">
+            <input type="submit" value="Login">
+            <p>Don't have an account? <a href="/register">Register</a></p>
+        </form>
+    </div>
+
+    {% endblock %}
 </body>
 </html>

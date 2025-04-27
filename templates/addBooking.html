@@ -9,26 +9,34 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Add Booking</h1>
-    <a href="/">back to home</a>
-    <h2>{{ text }}</h2>
-    <form action="/add" method="post">
-        <p>Room Type</p>
-        <input type="text" name="RoomType" id="" placeholder="Singe/Double/Suite">
-        <br>
+    {% extends 'sidebar.html' %}
 
-        <p>What will you pay with?</p>
-        <input type="text" name="PaymentType" id="" placeholder="Credit Card/Bank Transfer/Cash">
-        <br>
+    {% block content %}
+    
+    <div class="content">
+        <h1>Add Booking</h1>
+        <a href="/">back to home</a>
+        <h2>{{ text }}</h2>
+        <form action="/add" method="post">
+            <p>Room Type</p>
+            <input type="text" name="RoomType" id="" placeholder="Singe/Double/Suite">
+            <br>
 
-        <p>When will you check in?</p>
-        <input type="text" name="CheckIn" id="" placeholder="YYYY-MM-DD">
-        <br>
+            <p>What will you pay with?</p>
+            <input type="text" name="PaymentType" id="" placeholder="Credit Card/Bank Transfer/Cash">
+            <br>
 
-        <p>When will you check out?</p>
-        <input type="text" name="CheckOut" id="" placeholder="YYYY-MM-DD">
-        <br>
-        <input type="submit" value="Add">
-    </form>
+            <p>When will you check in?</p>
+            <input type="text" name="CheckIn" id="" placeholder="YYYY-MM-DD">
+            <br>
+
+            <p>When will you check out?</p>
+            <input type="text" name="CheckOut" id="" placeholder="YYYY-MM-DD">
+            <br>
+            <input type="submit" value="Add">
+        </form>
+    </div>
+    
+    {% endblock %}
 </body>
 </html>
