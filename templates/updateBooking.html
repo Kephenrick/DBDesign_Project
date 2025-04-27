@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script language="javascript" type="text/javascript">
+        window.history.forward();
+    </script>
+    <title>Document</title>
+</head>
+<body>
+    <h1>Update Booking</h1>
+    <a href="/">back to home</a>
+    <h2>{{ text }}</h2>
+    <form action="/update/{{ data['ReservationID'] }}" method="post">
+        <p>Room Type</p>
+        <input type="text" name="RoomType" id="" placeholder="Singe/Double/Suite" value="{{ data['RoomType'] }}">
+        <br>
+
+        <p>What will you pay with?</p>
+        <input type="text" name="PaymentType" id="" placeholder="Credit Card/Bank Transfer/Cash" value="{{ data['PaymentType'] }}">
+        <br>
+
+        <p>When will you check in?</p>
+        <input type="text" name="CheckIn" id="" placeholder="YYYY-MM-DD" value="{{ data['CheckIn'] }}">
+        <br>
+
+        <p>When will you check out?</p>
+        <input type="text" name="CheckOut" id="" placeholder="YYYY-MM-DD" value="{{ data['CheckOut'] }}">
+        <br>
+        <input type="submit" value="Update">
+    </form>
+    <div>
+        <p>Testing: {{ data['ReservationID'] }}</p>
+    </div>
+</body>
+</html>
