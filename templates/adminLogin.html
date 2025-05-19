@@ -3,19 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
     <script language="javascript" type="text/javascript">
         window.history.forward();
     </script>
     <title>Document</title>
 </head>
 <body>
-    <h1>Login</h1>
-    <a href="/">back to home</a>
-    <h3>{{ text }}</h3>
-    <form action="/login/admin" method="post">
-        <input type="text" name="StaffUsername" id="" placeholder="Staff Username">
-        <input type="password" name="StaffPassword" id="" placeholder="Password">
-        <input type="submit" value="Login">
-    </form>
+    <div class="wrapper">
+        <form action="/login/admin" method="post">
+            <h1>Login</h1>
+            <div class="inputBox">
+                <label for="">Username</label>
+                <br>
+                <input type="text" name="StaffUsername" placeholder="Username" required>
+            </div>
+            <div class="inputBox">
+                <label for="">Password</label>
+                <br>
+                <input type="password" name="StaffPassword" placeholder="Password" required>
+            </div>
+            <div class="button">
+                <input type="submit" value="Login" class="buttonPrimary">
+            </div>
+            <div class="links">
+                <a href="/login">return</a>
+                <a href="/">back to home</a>
+            </div>
+            {{ text }}
+        </form>
+    </div>
 </body>
 </html>

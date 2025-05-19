@@ -1,0 +1,344 @@
+/* baseline */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+    line-height: 1.6;
+    background-color: #dbdbdb;
+    color: #333;
+}
+
+/* dashboard sidebar */
+.sidebar {
+    margin: 0;
+    padding: 0;
+    top: 0;
+    left: 0;
+    width: 175px;
+    height: 100%;
+    background-color: #2c3e50;
+    position: fixed;
+    overflow: auto;
+    overflow-x: hidden;
+    z-index: 1;
+}
+
+.profSection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #22303e;
+    margin: auto;
+    width: 100%;
+    padding: 30px 0px;
+}
+
+.profSection2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #22303e;
+    margin: auto;
+    width: 100%;
+    padding: 0px 0px 10px 0px;
+    color: #fff;
+}
+
+.profile {
+    vertical-align: middle;
+    align-self: center;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.container {
+    text-align: center;
+}
+
+.sidebar ul {
+    list-style: none;
+    display: inline-block;
+    color: #fff;
+    text-align: left;
+}
+
+.sidebar .links {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.sidebar .links a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    padding: 15px 100px;
+    margin: 0px 1px;
+    text-align: center;
+}
+
+.sidebar .links a:hover {
+    background-color: #22303e;
+    text-decoration: none;
+    color: #fff;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.sidebar .logOut {
+    width: 100%;
+    position: absolute;
+    bottom: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sidebar .logOut a {
+    color: #fff;
+    background: #22303e;
+    text-decoration: none;
+    padding: 10px 100px;
+    margin: 0px 1px;
+}
+
+.sidebar .logOut a:hover {
+    background: #436482;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+/* navbar */
+header {
+    position: fixed;
+    margin-left: 175px;
+    top: 0px;
+    width: 89%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #3b5269;
+    color: #fff;
+    z-index: 0;
+}
+
+header .logo {
+    font-size: 1.8em;
+    font-weight: bold;
+    align-items: left;
+    margin-left: 5%;
+}
+
+.navProfile {
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+/* main section */
+main {
+    margin-left: 175px;
+    margin-top: 70px;
+    padding: 40px;
+}
+
+main .topWrap {
+    background-color: #fff;
+    border-radius: 30px;
+    box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2);
+    text-align: center;
+    font-weight: 300;
+}
+
+main .tableWrap {
+    margin-top: 20px;
+}
+
+.links {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    margin: 15px 0px 15px 0px;
+}
+
+.links a {
+    color: #000;
+    text-decoration: underline;
+}
+
+.links a:hover {
+    color: #1fadff;
+    text-decoration: underline;
+    transition: 0.3s;
+}
+
+/* table part */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.tableWrap {
+    background: #fff;
+    margin-top: 16px;
+    border-radius: 10px;
+    padding: 32px;
+}
+
+.tableContent {
+    width: 100%;
+}
+
+.tableContent thead {
+    background: #22303e;
+    color: #fff;
+}
+
+.tableContent th {
+    padding: 15px;
+    text-align: left;
+}
+
+.tableContent td {
+    padding: 15px;
+    font-size: 14px;
+    color: #333;
+}
+
+.tableContent tr:nth-child(even) {
+    background: #fff;
+}
+
+.tableContent tbody {
+    background: #efefef;
+}
+
+.regionButt {
+    margin-top: 16px;
+    padding: 2px 16px 20px;
+}
+
+/* update form */
+.wrapper h1{
+    font-size: 40px;
+    text-align: center;
+}
+
+.wrapper .inputBox {
+    width: 100%;
+    height: 50%;
+    margin: 10px 0px;
+}
+
+.wrapper label {
+    font-size: 20px;
+}
+
+.wrapper p {
+    font-size: 10px;
+    padding: 5px 0px 0px 0px;
+}
+
+.inputBox input {
+    width: 30%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    border: 1px solid rgb(0, 0, 0);
+    outline: none;
+    border-radius: 20px;
+    padding: 15px 35px 15px 15px;
+    font-size: 16px;
+    color: #000;
+}
+
+.inputBox input::placeholder {
+    color: #000;
+    opacity: 0.5;
+}
+
+.inputBox input:focus {
+    background-color: #cacaca;
+    opacity: 0.8;
+}
+
+.inputBox textarea {
+    width: 50%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    border: 1px solid rgb(0, 0, 0);
+    outline: none;
+    border-radius: 10px;
+    padding: 15px 35px 15px 15px;
+    font-size: 16px;
+    color: #000;
+}
+
+/* miscellaneous */
+.buttonPrimary {
+    padding: 8px 20px;
+    background-color: #2c3e50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.buttonPrimary:hover {
+    background-color: #22303e;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+}
+
+td .buttonPrimary {
+    background-color: #41678d;
+}
+
+td .buttonPrimary:hover {
+    background-color: #2c3e50;
+}
+
+.buttonSecondary {
+    padding: 8px 20px;
+    background-color: #694274;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.buttonSecondary:hover {
+    background-color: #55345e;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+}
+
+.buttonThird {
+    padding: 8px 20px;
+    background-color: #427459;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.buttonThird:hover {
+    background-color: #345e45;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+}

@@ -1,0 +1,135 @@
+/* baseline */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url('../static/bgImage.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 1.6;
+    background-color: #aeaeae;
+    color: #333;
+    margin: 10%;
+}
+
+/* form */
+.wrapper {
+    width: 420px;
+    background: transparent;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4);
+    color: #fff;
+    border-radius: 5px;
+    padding: 30px 40px;
+}
+
+.wrapper h1{
+    font-size: 40px;
+    text-align: center;
+}
+
+.wrapper .inputBox {
+    width: 100%;
+    height: 50%;
+    margin: 10px 0px;
+}
+
+.wrapper label {
+    font-size: 20px;
+}
+
+.wrapper p {
+    font-size: 10px;
+    padding: 5px 0px 0px 0px;
+}
+
+.inputBox input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    border: 1px solid rgba(255, 255, 255, .2);
+    outline: none;
+    border-radius: 40px;
+    padding: 20px 45px 20px 20px;
+    font-size: 16px;
+    color: #fff;
+}
+
+.inputBox input::placeholder {
+    color: #fff;
+    opacity: 0.5;
+}
+
+.inputBox input:focus {
+    background-color: #929292;
+    opacity: 0.8;
+}
+
+.inputBox select {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    border: 1px solid rgba(255, 255, 255, .2);
+    outline: none;
+    border-radius: 20px;
+    padding: 20px 45px 20px 20px;
+    font-size: 16px;
+    color: #fff;
+}
+
+.inputBox select:focus {
+    background-color: #929292;
+    opacity: 0.8s;
+}
+
+.button {
+    padding-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.wrapper .links {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    margin: 15px 0px 15px 0px;
+}
+
+.links a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.links a:hover {
+    color: #1fadff;
+    text-decoration: underline;
+    transition: 0.3s;
+}
+
+/* miscellaneous */
+.buttonPrimary {
+    padding: 8px 20px;
+    background-color: #fff;
+    color: #000;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.buttonPrimary:hover {
+    background-color: #22303e;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    color: #fff;
+    transition: 0.3s;
+}

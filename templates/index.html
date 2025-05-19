@@ -4,58 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
-    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
+    <script language="javascript" type="text/javascript">
+        window.history.forward();
+    </script>
+    <title>Home Page</title>
 </head>
 <body>
-    {% extends 'sidebar.html' %}
+    {% extends 'base.html' %}
 
     {% block content %}
 
-    {% if 'loggedin' not in session %}
-    <script language="javascript" type="text/javascript">
-        window.history.forward();
-    </script>
+    <section class="hero">
+        <div class="box">
+            <h1>Temukan Hotel Mercury di Indonesia</h1>
+            <p>Pesan hotel untuk liburan keluarga atau ruang rapat dengan jaminan harga terbaik.</p>
+        </div>
+    </section>
 
-    <div class="content">
-        <a href="/login">User Login</a>
-        <br>
-        <a href="/login/admin">Admin Login</a>
-        <br>
-        Not logged in
-    </div>
-    {% endif %}
+    <main>
+        {% for row in locations %}
 
-    {% if 'loggedin' in session%}
-    <script language="javascript" type="text/javascript">
-        window.history.forward();
-    </script>
-
-    <div class="content">
-        <a href="/logout">Log out</a>
-        Welcome {{ session['username'] }}
-        <h2>{{ deletemsg }}</h2>
-        <a href="/">back to home</a>
-
-        {% for row in reservations %}
-        <div class="card" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title">Reservation Card</h5>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">{{ row['RoomType'] }}</li>
-                    <li class="list-group-item">{{ row['PaymentStatus'] }}</li>
-                    <li class="list-group-item">A third item</li>
-                </ul>
-                <a href="/update/{{ row['ReservationID'] }}" class="btn btn-primary">Update Details</a>
-                <a href="/delete/{{ row['ReservationID'] }}" class="btn btn-secondary">Delete Booking</a>
+        <div class="region">
+            <h2>{{ row['Location'] }}</h2>
+            <hr>
+            <img src="{{ url_for('static', filename='placeholder.jpg') }}" alt="placeholder">
+            <div class="container">
+                <h3><b>{{ row['LocationName'] }}</b></h3>
+                <p>{{ row['LocationDescription'] }}</p>
+            </div>
+            <div class="regionButt">
+                <a href="/add" class="buttonPrimary">Book</a>
             </div>
         </div>
+
         {% endfor %}
 
-        <div>
-            <a href="/add" class="btn btn-primary">Book a Reservation</a>
+        <div class="newsletter">
+            <h2>Newsletter</h2>
+            <p>Subscribe to our newsletter now to gain the newest news!!!!!!</p>
+            <form>
+                <input type="email" placeholder="youremail@gmail.com" required>
+                <a href="#" class="buttonPrimary">Submit</a>
+            </form>
         </div>
-    </div>
-    {% endif %}
+    </main>
+
+    <footer>
+        <div class="footerLink">
+            <a href="/login">Find Hotel</a>
+            <a href="https://www.instagram.com/gtx_xwry">Contact Us</a>
+        </div>
+        <p>&copy; 2025 Mercury Hotel</p>
+    </footer>
 
     {% endblock %}
 

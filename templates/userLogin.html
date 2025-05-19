@@ -3,28 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
     <script language="javascript" type="text/javascript">
         window.history.forward();
     </script>
     <title>Document</title>
 </head>
 <body>
-    {% extends 'sidebar.html' %}
-
-    {% block content %}
-    
-    <div class="content">
-        <h1>Login</h1>
-        <a href="/">back to home</a>
-        <h3>{{ text }}</h3>
+    <div class="wrapper">
         <form action="/login" method="post">
-            <input type="text" name="GuestUsername" id="" placeholder="Guest Username">
-            <input type="password" name="GuestPassword" id="" placeholder="Password">
-            <input type="submit" value="Login">
-            <p>Don't have an account? <a href="/register">Register</a></p>
+            <h1>Login</h1>
+            <div class="inputBox">
+                <label for="">Username</label>
+                <br>
+                <input type="text" name="GuestUsername" placeholder="Username" required>
+            </div>
+            <div class="inputBox">
+                <label for="">Password</label>
+                <br>
+                <input type="password" name="GuestPassword" placeholder="Password" required>
+            </div>
+            <div class="button">
+                <input type="submit" value="Login" class="buttonPrimary">
+            </div>
+            <div class="links">
+                <a href="/login/admin">Staff Login</a>
+                <a href="/register">Register</a>
+            </div>
+            <div class="links">
+                <a href="/">back to home</a>
+            </div>
+            {{ text }}
         </form>
     </div>
-
-    {% endblock %}
 </body>
 </html>
