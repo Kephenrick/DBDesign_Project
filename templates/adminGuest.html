@@ -16,7 +16,7 @@
 
     <main>
         <div class="topWrap">
-            <h1>Reservation List</h1>
+            <h1>Guest Accounts List</h1>
         </div>
         <div class="tableWrap">
             <h3>Records</h3>
@@ -24,25 +24,23 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Guest</th>
-                            <th>Hotel</th>
-                            <th>Room Type</th>
-                            <th>Check In</th>
-                            <th>Check Out</th>
-                            <th>Payment</th>
-                            <th>Payment Status</th>
+                            <th>GuestID</th>
+                            <th>Guest Name</th>
+                            <th>Guest Password</th>
+                            <th>Phone Number</th>
+                            <th>Gender</th>
+                            <th>Email</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {% for row in reservations %}
+                        {% for row in guests %}
                         <tr>
+                            <td>{{ row['GuestID'] }}</td>
                             <td>{{ row['GuestName'] }}</td>
-                            <td>{{ row['LocationName'] }}</td>
-                            <td>{{ row['RoomType'] }}</td>
-                            <td>{{ row['CheckIn'] }}</td>
-                            <td>{{ row['CheckOut'] }}</td>
-                            <td>{{ row['PaymentType'] }}</td>
-                            <td>{{ row['PaymentStatus'] }}</td>
+                            <td>{{ row['GuestPass'] }}</td>
+                            <td>{{ row['PhoneNum'] }}</td>
+                            <td>{{ row['Gender'] }}</td>
+                            <td>{{ row['Email'] }}</td>
                         </tr>
                         {% endfor %}
                     </tbody>

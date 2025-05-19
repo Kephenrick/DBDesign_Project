@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Mercury</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
+</head>
+<body>
+    <!-- user no log in -->
+    {% if 'loggedin' not in session %}
+    <header>
+        <div class="logo">Mercury</div>
+        <nav class="navBar">
+            <a href="/register">Register</a>
+            <a href="/login">Login</a>
+        </nav>
+    </header>
+
+    {% if 'loggedinn' in session %}
+    <header>
+        <div class="logo">Mercury</div>
+        <nav>
+            <a href="/adminPage"><img src="{{ url_for('static', filename='blankProfile.png') }}" alt="profile picture" class="profile"></a>
+        </nav>
+    </header>
+    {% endif %}
+    
+    {% endif %}
+
+    <!-- user log in -->
+    {% if 'loggedin' in session%}
+    <header>
+        <div class="logo">Mercury</div>
+        <nav>
+            <a href="/profile/book"><img src="{{ url_for('static', filename='blankProfile.png') }}" alt="profile picture" class="profile"></a>
+        </nav>
+    </header>
+    {% endif %}
+
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

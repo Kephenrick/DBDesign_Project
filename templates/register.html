@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script language="javascript" type="text/javascript">
+        window.history.forward();
+    </script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+    <title>Register Page</title>
+</head>
+<body>
+    <div class="wrapper">
+        <form action="/register" method="POST">
+            <h1>Register</h1>
+            <div class="inputBox">
+                <label for="">Username</label>
+                <br>
+                <input type="text" name="GuestUsername" placeholder="Username" required>
+            </div>
+            <div class="inputBox">
+                <label for="">Email</label>
+                <br>
+                <input type="email" name="GuestEmail" placeholder="youremail@gmail.com" required>
+            </div>
+            <div class="inputBox">
+                <label for="">Phone Number</label>
+                <br>
+                <input type="text" name="GuestPhone" placeholder="08xxxxxxxx" required>
+            </div>
+            <div class="inputBox">
+                <label for="">Password</label>
+                <br>
+                <input type="password" name="GuestPassword" placeholder="Password" required>
+                <p>password must include number and symbol #, !, ?</p>
+            </div>
+            <div class="inputBox">
+                <label for="">Gender</label>
+                <br>
+                <select name="GuestGender" id="" required>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            </div>
+            <div class="button">
+                <input type="submit" value="Submit" class="buttonPrimary">
+            </div>
+            <div class="links">
+                <a href="/login">return</a>
+                <a href="/">back to home</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

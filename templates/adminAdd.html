@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script language="javascript" type="text/javascript">
+        window.history.forward();
+    </script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='profile.css') }}">
+    <title>Profile</title>
+</head>
+<body>
+    {% extends 'adminBase.html' %}
+
+    {% block content %}
+
+    <main>
+        <div class="topWrap">
+            <h1>Add Hotel Info</h1>
+        </div>
+        <div class="tableWrap">
+            <div class="links">
+                <a href="/adminPage/location">return</a>
+            </div>
+            <div class="tableContent">
+                <div class="content">
+                    <form action="/adminPage/location/add" method="post">
+                        <label for="">Region</label>
+                        <input type="text" name="Location" id="" placeholder="Region name" required>
+                        <br>
+            
+                        <label for="">Hotel</label>
+                        <input type="text" name="LocationName" id="" placeholder="Hotel Name" required>
+                        <br>
+            
+                        <label for="">Address</label>
+                        <input type="text" name="LocationAddress" id="" placeholder="Jl. xxx" required>
+                        <br>
+            
+                        <label for="">Description</label>
+                        <textarea name="LocationDescription" id="" required></textarea>
+                        <br>
+                        <input type="submit" value="Add Record">
+                    </form>
+                </div>
+            </div>
+            <div class="regionButt">
+                <a href="#" class="buttonPrimary">Add Record</a>
+            </div>
+        </div>
+        <div class="links">
+            <a href="/">back to home</a>
+        </div>
+    </main>
+
+    {% endblock %}
+</body>
+</html>

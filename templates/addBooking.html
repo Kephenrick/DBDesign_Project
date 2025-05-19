@@ -6,36 +6,60 @@
     <script language="javascript" type="text/javascript">
         window.history.forward();
     </script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
     <title>Document</title>
 </head>
 <body>
-    {% extends 'sidebar.html' %}
+    {% extends 'base.html' %}
 
     {% block content %}
     
-    <div class="content">
-        <h1>Add Booking</h1>
-        <a href="/">back to home</a>
-        <h2>{{ text }}</h2>
-        <form action="/add" method="post">
-            <p>Room Type</p>
-            <input type="text" name="RoomType" id="" placeholder="Singe/Double/Suite">
-            <br>
+    <section class="hero">
+        <div class="box">
+            <h1>Region Name</h1>
+            <p>Book your hotel room now to get the best possible vacation!</p>
+        </div>
+    </section>
 
-            <p>What will you pay with?</p>
-            <input type="text" name="PaymentType" id="" placeholder="Credit Card/Bank Transfer/Cash">
-            <br>
-
-            <p>When will you check in?</p>
-            <input type="text" name="CheckIn" id="" placeholder="YYYY-MM-DD">
-            <br>
-
-            <p>When will you check out?</p>
-            <input type="text" name="CheckOut" id="" placeholder="YYYY-MM-DD">
-            <br>
-            <input type="submit" value="Add">
-        </form>
-    </div>
+    <main class="hotelDetail">
+        <div class="detail">
+            <h2><b>Hotel Name</b></h2>
+            <hr>
+            <div class="detailer">
+                <h3>Nama Hotel</h3>
+                <p>deskripsi hotel</p>
+            </div>
+            <hr>
+            <div class="detailer">
+                <h3>Address</h3>
+                <p>address</p>
+            </div>
+            <hr>
+            <div class="detailer">
+                <h3>Facility</h3>
+                <ul>
+                    <li>Wi-Fi</li>
+                    <li>Swimming Pool</li>
+                    <li>Parking Spot</li>
+                    <li>Dining Hall</li>
+                </ul>
+            </div>
+        </div>
+        <hr>
+        <div class="detail">
+            <h2><b>Room</b></h2>
+            <hr>
+            <div class="block">
+                <div class="detailer">
+                    <h3>Single</h3>
+                    <p>deskripsi hotel</p>
+                </div>
+                <div class="button">
+                    <a href="#" class="buttonPrimary">Book</a>
+                </div>
+            </div>
+        </div>
+    </main>
     
     {% endblock %}
 </body>

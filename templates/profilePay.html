@@ -10,39 +10,38 @@
     <title>Profile</title>
 </head>
 <body>
-    {% extends 'adminBase.html' %}
+    {% extends 'profileBase.html' %}
 
     {% block content %}
 
     <main>
         <div class="topWrap">
-            <h1>Reservation List</h1>
+            <h1>Update Location Info</h1>
         </div>
         <div class="tableWrap">
-            <h3>Records</h3>
+            <div class="links">
+                <a href="/profile/book">return</a>
+            </div>
+            <hr>
             <div class="tableContent">
                 <table>
                     <thead>
                         <tr>
-                            <th>Guest</th>
                             <th>Hotel</th>
                             <th>Room Type</th>
-                            <th>Check In</th>
-                            <th>Check Out</th>
-                            <th>Payment</th>
-                            <th>Payment Status</th>
+                            <th>Payment Type</th>
+                            <th>Price</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        {% for row in reservations %}
+                        {% for row in bookings %}
                         <tr>
-                            <td>{{ row['GuestName'] }}</td>
                             <td>{{ row['LocationName'] }}</td>
                             <td>{{ row['RoomType'] }}</td>
-                            <td>{{ row['CheckIn'] }}</td>
-                            <td>{{ row['CheckOut'] }}</td>
                             <td>{{ row['PaymentType'] }}</td>
-                            <td>{{ row['PaymentStatus'] }}</td>
+                            <td>{{ row['RoomPrice'] }}</td>
+                            <td><a href="/profile/payment/pay/{{ row['ReservationID'] }}" class="buttonThird">Pay</a></td>
                         </tr>
                         {% endfor %}
                     </tbody>
