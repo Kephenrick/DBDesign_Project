@@ -56,6 +56,16 @@ def profilePayed(id):
 
     return redirect(url_for('profilePay'))
 
+@app.route('/profile/payment/delete/<int:id>')
+def payDelete(id):
+    conn = mysql.connect()
+    cur = conn.cursor(pymysql.cursors.DictCursor)
+    cur.execute("DELETE FROM msreservation WHERE ReservationID = %s", id)
+    conn.commit()
+    text = 'data deleted successfully'
+
+    return redirect(url_for('profilePay'))
+
 @app.route('/profile/delete/<int:id>')
 def profileDelete(id):
     conn = mysql.connect()
@@ -68,24 +78,21 @@ def profileDelete(id):
 
 @app.route('/profile/update/<int:id>', methods=['GET', 'POST'])
 def updateBook(id):
-    text = ''
     conn = mysql.connect()
     cur = conn.cursor(pymysql.cursors.DictCursor)
-    cur.execute("SELECT * FROM msreservation mr JOIN msguest mg ON mg.GuestID = mr.GuestID JOIN msroom rm ON rm.RoomID = mr.RoomID JOIN mslocation ml ON ml.LocationID = mr.LocationID WHERE mr.reservationID = %s", id)
+    cur.execute("SELECT * FROM msreservation WHERE reservationID = %s", id)
     data = cur.fetchone()
 
     if request.method == 'POST':
-        roomtype = request.form['RoomType']
-        paymenttype = request.form['PaymentType']
         checkindate = request.form['CheckIn']
         checkoutdate = request.form['CheckOut']
 
-        cur.execute("UPDATE msreservation SET RoomType = %s, PaymentType = %s, CheckIn = %s, CheckOut = %s WHERE ReservationID = %s", (roomtype, paymenttype, checkindate, checkoutdate, id,))
+        cur.execute("UPDATE msreservation SET CheckIn = %s, CheckOut = %s WHERE ReservationID = %s", (checkindate, checkoutdate, id,))
         conn.commit()
 
-        text = 'Data updated successfully'
+        return redirect(url_for('profile'))
 
-    return render_template('profileUpdate.html', data=data, text=text)
+    return render_template('profileUpdate.html', data=data)
 
 @app.route('/adminPage', methods=['GET'])
 def adminHome():
@@ -94,11 +101,27 @@ def adminHome():
         cur = conn.cursor(pymysql.cursors.DictCursor)
         cur.execute("SELECT * FROM msreservation mr JOIN msguest mg ON mg.GuestID = mr.GuestID JOIN msroom rm ON rm.RoomID = mr.RoomID JOIN mslocation ml ON ml.LocationID = mr.LocationID ORDER BY mr.GuestID")
         data = cur.fetchall()
+
+        cur.execute("SELECT ml.LocationName, COUNT(mr.LocationID) AS 'appearance' FROM msreservation mr JOIN mslocation ml ON ml.LocationID = mr.LocationID GROUP BY ml.LocationName ORDER BY appearance DESC")
+        data2 = cur.fetchone()
+
+        cur.execute("SELECT mg.GuestName, COUNT(mr.GuestID) AS 'appearance' FROM msreservation mr JOIN msguest mg ON mg.GuestID = mr.GuestID GROUP BY mg.GuestName ORDER BY appearance DESC")
+        data3 = cur.fetchone()
         cur.close
 
-        return render_template('adminPage.html', reservations=data)
+        return render_template('adminPage.html', reservations=data, location=data2, guest=data3)
 
     return render_template('adminPage.html')
+
+@app.route('/adminPage/delete/<int:id>')
+def adminDeleterec(id):
+    conn = mysql.connect()
+    cur = conn.cursor(pymysql.cursors.DictCursor)
+    cur.execute("DELETE FROM msreservation WHERE ReservationID = %s", id)
+    conn.commit()
+    text = 'data deleted successfully'
+
+    return redirect(url_for('adminHome'))
 
 @app.route('/adminPage/guest')
 def adminGuest():
@@ -140,7 +163,7 @@ def adminAdd():
     elif request.method == 'POST':
         text = "Please fill in all the forms"
     
-    return render_template('/adminAdd.html')
+    return render_template('adminAdd.html')
 
 @app.route('/adminPage/location/update/<int:id>', methods=['GET', 'POST'])
 def adminUpdate(id):
@@ -173,46 +196,35 @@ def adminDelete(id):
 
     return redirect(url_for('adminLocation'))
 
-@app.route('/add', methods=['GET', 'POST'])
-def addBooking():
-    text = ''
-    if request.method == 'POST' and 'RoomType' in request.form and 'PaymentType' in request.form and 'CheckIn' in request.form and 'CheckOut' in request.form:
-        roomtype = request.form['RoomType']
-        paymenttype = request.form['PaymentType']
-        checkindate = request.form['CheckIn']
-        checkoutdate = request.form['CheckOut']
-
-        conn = mysql.connect()
-        cur = conn.cursor(pymysql.cursors.DictCursor)
-        cur.execute("INSERT INTO msreservation VALUES(NULL, %s, %s, 'Waiting for Payment', %s, %s, %s, 'ST001')", (roomtype, paymenttype, checkindate, checkoutdate, session['id'],))
-        conn.commit()
-        cur.close()
-        text = "Account successfully created!"
-    elif request.method == 'POST':
-        text = "Please fill in all the forms"
-    
-    return render_template('addBooking.html', text=text)
-
-@app.route('/update/<int:id>', methods=['GET', 'POST'])
-def updateBooking(id):
+@app.route('/add/<int:id>', methods=['GET', 'POST'])
+def addBooking(id):
     text = ''
     conn = mysql.connect()
     cur = conn.cursor(pymysql.cursors.DictCursor)
-    cur.execute("SELECT * FROM msreservation WHERE ReservationID = %s", id)
+    cur.execute("SELECT * FROM msreservation mr JOIN mslocation ml ON ml.LocationID = mr.LocationID JOIN msroom rm ON rm.RoomID = mr.RoomID WHERE mr.LocationID = %s", id)
     data = cur.fetchone()
 
+    cur.execute("SELECT * FROM msroom")
+    rooms = cur.fetchall()
+    
+    return render_template('addBooking.html', data=data, rooms=rooms, text=text)
+
+@app.route('/add/<int:id>/<int:id2>', methods=['GET', 'POST'])
+def addBooking2(id, id2):
     if request.method == 'POST':
-        roomtype = request.form['RoomType']
-        paymenttype = request.form['PaymentType']
-        checkindate = request.form['CheckIn']
-        checkoutdate = request.form['CheckOut']
+        checkin = request.form['CheckIn']
+        checkout = request.form['CheckOut']
+        payment = request.form['PaymentType']
 
-        cur.execute("UPDATE msreservation SET RoomType = %s, PaymentType = %s, CheckIn = %s, CheckOut = %s WHERE ReservationID = %s", (roomtype, paymenttype, checkindate, checkoutdate, id,))
+        conn = mysql.connect()
+        cur = conn.cursor(pymysql.cursors.DictCursor)
+        cur.execute("INSERT INTO msreservation VALUES(NULL, %s, 'Pending', %s, %s, %s, 1, %s, %s)", (payment, checkin, checkout, session['id'], id2, id))
         conn.commit()
+        cur.close
 
-        text = 'Data updated successfully'
-
-    return render_template('updateBooking.html', data=data, text=text)
+        return redirect(url_for('home'))
+    
+    return redirect(url_for('home'))
 
 @app.route('/login', methods=['GET', 'POST'])
 def userLogin():

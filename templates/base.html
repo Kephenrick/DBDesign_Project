@@ -10,7 +10,7 @@
     <!-- user no log in -->
     {% if 'loggedin' not in session %}
     <header>
-        <div class="logo">Mercury</div>
+        <div class="logo"><a href="/">Mercury</a></div>
         <nav class="navBar">
             <a href="/register">Register</a>
             <a href="/login">Login</a>
@@ -19,7 +19,7 @@
 
     {% if 'loggedinn' in session %}
     <header>
-        <div class="logo">Mercury</div>
+        <div class="logo"><a href="/">Mercury</a></div>
         <nav>
             <a href="/adminPage"><img src="{{ url_for('static', filename='blankProfile.png') }}" alt="profile picture" class="profile"></a>
         </nav>
@@ -31,7 +31,7 @@
     <!-- user log in -->
     {% if 'loggedin' in session%}
     <header>
-        <div class="logo">Mercury</div>
+        <div class="logo"><a href="/">Mercury</a></div>
         <nav>
             <a href="/profile/book"><img src="{{ url_for('static', filename='blankProfile.png') }}" alt="profile picture" class="profile"></a>
         </nav>

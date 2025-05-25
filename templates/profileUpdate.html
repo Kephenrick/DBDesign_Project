@@ -25,26 +25,16 @@
             <hr>
             <div class="tableContent">
                 <div class="wrapper">
-                    <form action="/profile/update/{{ cur['reservationID'] }}" method="post">
+                    <form action="/profile/update/{{ data['ReservationID'] }}" method="post">
                         <div class="inputBox">
-                            <label for="">Region</label>
+                            <label for="">Check in date</label>
                             <br>
-                            <input type="text" name="Location" id="" placeholder="Region name" value="{{ cur['Location'] }}">
+                            <input type="date" name="CheckIn" id="" value="{{ data['CheckIn'] }}">
                         </div>            
                         <div class="inputBox">
-                            <label for="">Hotel</label>
+                            <label for="">Check out date</label>
                             <br>
-                            <input type="text" name="LocationName" id="" placeholder="Hotel Name" value="{{ cur['LocationName'] }}">
-                        </div>         
-                        <div class="inputBox">
-                            <label for="">Address</label>
-                            <br>
-                            <input type="text" name="LocationAddress" id="" placeholder="Jl. xxx" value="{{ cur['LocationAddress'] }}">
-                        </div>
-                        <div class="inputBox">
-                            <label for="">Description</label>
-                            <br>
-                            <textarea name="LocationDescription" id="">{{ cur['LocationDescription'] }}</textarea>
+                            <input type="date" name="CheckOut" id="" value="{{ data['CheckOut'] }}">
                         </div>
                         <div class="regionButt">
                             <input type="submit" value="Update Record" class="buttonPrimary">

@@ -23,16 +23,16 @@
 
     <main class="hotelDetail">
         <div class="detail">
-            <h2><b>Hotel Name</b></h2>
+            <h2><b>{{ data['Location'] }}</b></h2>
             <hr>
             <div class="detailer">
-                <h3>Nama Hotel</h3>
-                <p>deskripsi hotel</p>
+                <h3>{{ data['LocationName'] }}</h3>
+                <p>{{ data['LocationDescription'] }}</p>
             </div>
             <hr>
             <div class="detailer">
                 <h3>Address</h3>
-                <p>address</p>
+                <p>{{ data['LocationAddress'] }}</p>
             </div>
             <hr>
             <div class="detailer">
@@ -49,15 +49,38 @@
         <div class="detail">
             <h2><b>Room</b></h2>
             <hr>
+            {% for row in rooms %}
+
             <div class="block">
                 <div class="detailer">
-                    <h3>Single</h3>
-                    <p>deskripsi hotel</p>
+                    <h3>{{ row['RoomType'] }}</h3>
+                    <p>price: {{ row['RoomPrice'] }}</p>
                 </div>
-                <div class="button">
-                    <a href="#" class="buttonPrimary">Book</a>
-                </div>
+                <form action="/add/{{ data['LocationID'] }}/{{ row['RoomID'] }}" method="post">
+                    <label for="">Check in date: </label>
+                    <input type="date" name="CheckIn" id="" required>
+                    <br>
+                    <label for="">Check out date: </label>
+                    <input type="date" name="CheckOut" id="" required>
+                    <br>
+                    
+                    <label for="">Payment Type: </label>
+                    <select name="PaymentType" id="" required>
+                    <option value="BankMega">Mega Matercard</option>
+                    <option value="Paypal">Paypal</option>
+                    <option value="BCA">BCA</option>
+                    </select>
+                    <br>
+
+                    <br>
+
+                    <input type="submit" value="Book" class="buttonPrimary">
+                </form>
             </div>
+            <br>
+            <hr>
+
+            {% endfor %}
         </div>
     </main>
     

@@ -342,3 +342,19 @@ td .buttonPrimary:hover {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
     transition: 0.3s;
 }
+
+.buttonFour {
+    padding: 8px 20px;
+    background-color: #e21a1a;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.buttonFour:hover {
+    background-color: #a61414;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+}
