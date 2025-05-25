@@ -35,6 +35,12 @@ header .logo {
     font-weight: bold;
     align-items: left;
     margin-left: 5%;
+    color: #fff;
+}
+
+.logo a {
+    color: #fff;
+    text-decoration: none;
 }
 
 header .navBar {

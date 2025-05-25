@@ -31,6 +31,7 @@
                             <th>Payment Type</th>
                             <th>Payment Status</th>
                             <th></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -42,7 +43,8 @@
                             <td>{{ row['CheckOut'] }}</td>
                             <td>{{ row['PaymentType'] }}</td>
                             <td>{{ row['PaymentStatus'] }}</td>
-                            <td><a href="/profile/delete/{{ row['ReservationID'] }}" class="buttonSecondary">Delete</a></td>
+                            <td><a href="/profile/update/{{ row['ReservationID'] }}" class="buttonPrimary">Reschedule</a></td>
+                            <td><a href="/profile/delete/{{ row['ReservationID'] }}" class="buttonFour">Cancel</a></td>
                         </tr>
                         {% endfor %}
                     </tbody>

@@ -31,6 +31,7 @@
                             <th>Check Out</th>
                             <th>Payment</th>
                             <th>Payment Status</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -43,12 +44,29 @@
                             <td>{{ row['CheckOut'] }}</td>
                             <td>{{ row['PaymentType'] }}</td>
                             <td>{{ row['PaymentStatus'] }}</td>
+                            <td><a href="/adminPage/delete/{{ row['ReservationID'] }}" class="buttonFour">Delete</a></td>
                         </tr>
                         {% endfor %}
                     </tbody>
                 </table>
             </div>
         </div>
+        <br>
+        <div class="topWrap">
+            <h1>Statistics</h1>
+        </div>
+        <div class="tableWrap">
+            <div class="calcs">
+            <h2>Most popular hotel</h2>
+            <p>{{ location['LocationName'] }}</p>
+
+            <hr>
+
+            <h2>User with most bookings</h2>
+            <p>{{ guest['GuestName'] }}</p>
+        </div>
+        </div>
+
         <div class="links">
             <a href="/">back to home</a>
         </div>

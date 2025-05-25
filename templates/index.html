@@ -28,13 +28,13 @@
         <div class="region">
             <h2>{{ row['Location'] }}</h2>
             <hr>
-            <img src="{{ url_for('static', filename='placeholder.jpg') }}" alt="placeholder">
+            <img src="{{ url_for('static', filename='placeholder2.jpg') }}" alt="placeholder">
             <div class="container">
                 <h3><b>{{ row['LocationName'] }}</b></h3>
                 <p>{{ row['LocationDescription'] }}</p>
             </div>
             <div class="regionButt">
-                <a href="/add" class="buttonPrimary">Book</a>
+                <a href="/add/{{ row['LocationID'] }}" class="buttonPrimary">Book</a>
             </div>
         </div>
 
@@ -52,7 +52,7 @@
 
     <footer>
         <div class="footerLink">
-            <a href="/login">Find Hotel</a>
+            <a href="/">Find Hotel</a>
             <a href="https://www.instagram.com/gtx_xwry">Contact Us</a>
         </div>
         <p>&copy; 2025 Mercury Hotel</p>

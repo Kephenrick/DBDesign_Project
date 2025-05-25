@@ -32,6 +32,7 @@
                             <th>Payment Type</th>
                             <th>Price</th>
                             <th></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -42,6 +43,7 @@
                             <td>{{ row['PaymentType'] }}</td>
                             <td>{{ row['RoomPrice'] }}</td>
                             <td><a href="/profile/payment/pay/{{ row['ReservationID'] }}" class="buttonThird">Pay</a></td>
+                            <td><a href="/profile/payment/delete/{{ row['ReservationID'] }}" class="buttonFour">Cancel</a></td>
                         </tr>
                         {% endfor %}
                     </tbody>
