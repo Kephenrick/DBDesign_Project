@@ -315,4 +315,5 @@ def register():
     return render_template('register.html',text=text)
 
 if __name__ == '__main__':
+    app.static_folder = 'static'
     app.run(debug = True)

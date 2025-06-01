@@ -6,7 +6,8 @@
     <script language="javascript" type="text/javascript">
         window.history.forward();
     </script>
-    <link rel="stylesheet" href="{{ url_for('static', filename='profile.css') }}">
+    <script src="{{ url_for('static', filename='/js/add.js') }}" defer></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/profile.css') }}">
     <title>Profile</title>
 </head>
 <body>
@@ -27,29 +28,33 @@
             
             <div class="tableContent">
                 <div class="content">
-                    <form action="/adminPage/location/add" method="post">
+                    <form id="addLocForm" action="/adminPage/location/add" method="post">
                         <div class="inputBox">
                             <label for="">Region</label>
                             <br>
-                            <input type="text" name="Location" id="" placeholder="Region name" required>
+                            <input type="text" name="Location" id="region" placeholder="Region name">
+                            <div class="error"></div>
                         </div>
             
                         <div class="inputBox">
                             <label for="">Hotel</label>
                             <br>
-                            <input type="text" name="LocationName" id="" placeholder="Hotel Name" required>
+                            <input type="text" name="LocationName" id="name" placeholder="Hotel Name">
+                            <div class="error"></div>
                         </div>
             
                         <div class="inputBox">
                             <label for="">Address</label>
                             <br>
-                            <input type="text" name="LocationAddress" id="" placeholder="Jl. xxx" required>
+                            <input type="text" name="LocationAddress" id="address" placeholder="Jl. xxx">
+                            <div class="error"></div>
                         </div>
             
                         <div class="inputBox">
                             <label for="">Description</label>
                             <br>
-                            <textarea name="LocationDescription" id="" required></textarea>
+                            <textarea name="LocationDescription" id="description"></textarea>
+                            <div class="error"></div>
                         </div>
 
                         <br>

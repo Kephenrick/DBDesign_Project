@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hotel Mercury</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/base.css') }}">
 </head>
 <body>
     <!-- user no log in -->
@@ -21,7 +21,7 @@
     <header>
         <div class="logo"><a href="/">Mercury</a></div>
         <nav>
-            <a href="/adminPage"><img src="{{ url_for('static', filename='blankProfile.png') }}" alt="profile picture" class="profile"></a>
+            <a href="/adminPage"><img src="{{ url_for('static', filename='/img/blankProfile.png') }}" alt="profile picture" class="profile"></a>
         </nav>
     </header>
     {% endif %}
@@ -33,7 +33,7 @@
     <header>
         <div class="logo"><a href="/">Mercury</a></div>
         <nav>
-            <a href="/profile/book"><img src="{{ url_for('static', filename='blankProfile.png') }}" alt="profile picture" class="profile"></a>
+            <a href="/profile/book"><img src="{{ url_for('static', filename='/img/blankProfile.png') }}" alt="profile picture" class="profile"></a>
         </nav>
     </header>
     {% endif %}

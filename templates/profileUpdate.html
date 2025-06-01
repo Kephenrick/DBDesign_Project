@@ -6,7 +6,8 @@
     <script language="javascript" type="text/javascript">
         window.history.forward();
     </script>
-    <link rel="stylesheet" href="{{ url_for('static', filename='profile.css') }}">
+    <script src="{{ url_for('static', filename='/js/date2.js') }}" defer></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/profile.css') }}">
     <title>Profile</title>
 </head>
 <body>
@@ -25,16 +26,17 @@
             <hr>
             <div class="tableContent">
                 <div class="wrapper">
-                    <form action="/profile/update/{{ data['ReservationID'] }}" method="post">
+                    <form id="updateForm" action="/profile/update/{{ data['ReservationID'] }}" method="post">
                         <div class="inputBox">
                             <label for="">Check in date</label>
                             <br>
-                            <input type="date" name="CheckIn" id="" value="{{ data['CheckIn'] }}">
+                            <input type="date" name="CheckIn" id="checkin2" value="{{ data['CheckIn'] }}">
                         </div>            
                         <div class="inputBox">
                             <label for="">Check out date</label>
                             <br>
-                            <input type="date" name="CheckOut" id="" value="{{ data['CheckOut'] }}">
+                            <input type="date" name="CheckOut" id="checkout2" value="{{ data['CheckOut'] }}">
+                            <div class="error"></div>
                         </div>
                         <div class="regionButt">
                             <input type="submit" value="Update Record" class="buttonPrimary">

@@ -3,25 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+    <script src="{{ url_for('static', filename='/js/login.js') }}" defer></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/login.css') }}">
     <script language="javascript" type="text/javascript">
         window.history.forward();
     </script>
-    <title>Document</title>
+    <title>Log in</title>
 </head>
 <body>
     <div class="wrapper">
-        <form action="/login" method="post">
+        <form id="loginForm" action="/login" method="post">
             <h1>Login</h1>
             <div class="inputBox">
                 <label for="">Username</label>
                 <br>
-                <input type="text" name="GuestUsername" placeholder="Username" required>
+                <input type="text" name="GuestUsername" placeholder="Username" id="username">
+                <div class="error"></div>
             </div>
             <div class="inputBox">
                 <label for="">Password</label>
                 <br>
-                <input type="password" name="GuestPassword" placeholder="Password" required>
+                <input type="password" name="GuestPassword" placeholder="Password" id="password">
+                <div class="error"></div>
             </div>
             <div class="button">
                 <input type="submit" value="Login" class="buttonPrimary">
