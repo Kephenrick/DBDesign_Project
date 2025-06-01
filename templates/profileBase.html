@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='profile.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/profile.css') }}">
     <title>Profile</title>
 </head>
 <body>
     <nav class="sidebar">
         <div class="profSection">
-            <img src="{{ url_for('static', filename='blankProfile.png') }}" alt="" class="profile">
+            <img src="{{ url_for('static', filename='/img/blankProfile.png') }}" alt="" class="profile">
         </div>
         <div class="profSection2">
             <h3>Welcome, {{ session['username'] }}</h3>
@@ -27,7 +27,7 @@
     <header>
         <div class="logo">Mercury</div>
         <nav>
-            <img src="{{ url_for('static', filename='blankProfile.png') }}" alt="profile picture" class="navProfile">
+            <img src="{{ url_for('static', filename='/img/blankProfile.png') }}" alt="profile picture" class="navProfile">
         </nav>
     </header>
 

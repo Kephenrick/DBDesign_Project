@@ -79,7 +79,7 @@ nav a:hover {
 /* hero section */
 .hero {
     display: flex;
-    background-image: url('../static/bgHero.jpg');
+    background-image: url('../img/bgHero.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: 100% 100%;
@@ -216,6 +216,19 @@ main {
 
 .detailer {
     padding: 2px 0px 20px;
+}
+
+.input-control.success input {
+    border-color: #00ff11;
+}
+
+.input-control.error input {
+    border-color: #f40000;
+}
+
+.input-control .error {
+    color: #f40000;
+    font-size: 9px;
 }
 
 .block div {

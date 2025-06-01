@@ -286,6 +286,19 @@ table {
     color: #000;
 }
 
+.inputBox.success input {
+    border-color: #00ff11;
+}
+
+.inputBox.error input {
+    border-color: #f40000;
+}
+
+.inputBox .error {
+    color: #f40000;
+    font-size: 9px;
+}
+
 /* miscellaneous */
 .buttonPrimary {
     padding: 8px 20px;
