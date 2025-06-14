@@ -5,5 +5,7 @@ To run the app, make sure that python is installed as well as Flask. Commands to
 - pymysql library - pip install PyMySQL
 - Flask - pip install flask
 - Flaskext - pip install Flask-MySQL
+- bcrpt - pip install flask-bcrypt
 
+You are welcome to use the users in the dummy database, although since they are all encrypted, make sure to take note of the passwords. The passwords in the default dummy database are all '12345' without the quotation marks.
 As for the mySQL file, it is in the directory named as 'dummyDatabase' for use, before running the app make sure to import the mySQL file into any database tools and to change the configuration in 'app.py' according to the name or tool that was used.

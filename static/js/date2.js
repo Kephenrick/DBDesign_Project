@@ -31,7 +31,11 @@ const dateValidate = () => {
     const checkoutDate = new Date(checckout.value);
 
     if (checkinDate > checkoutDate){
-        setError(checkout, 'test');
+        setError(checkout, 'Check in date should not be after check out');
+    } else if (checkoutDate < today){
+        setError(checkout, 'Check out cannot be before today');
+    } else if (checkinDate < today){
+        setError(checkout, 'Check in cannot be before today');
     } else{
         setSuccess(checkout);
         form.submit();
