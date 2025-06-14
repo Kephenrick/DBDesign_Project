@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script language="javascript" type="text/javascript">
+        window.history.forward();
+    </script>
+    <script src="{{ url_for('static', filename='/js/registerAdmin.js') }}" defer></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/login.css') }}">
+    <title>Register Page</title>
+</head>
+<body>
+    <div class="wrapper">
+        <form id="registerForm" action="/register/admin" method="POST">
+            <h1>Register</h1>
+            <div class="inputBox">
+                <label for="">Username</label>
+                <br>
+                <input id="username" type="text" name="StaffUsername" placeholder="Username">
+                <div class="error"></div>
+            </div>
+            <div class="inputBox">
+                <label for="">Phone Number</label>
+                <br>
+                <input id="phone" type="text" name="StaffPhone" placeholder="08xxxxxxxx">
+                <div class="error"></div>
+            </div>
+            <div class="inputBox">
+                <label for="">Password</label>
+                <br>
+                <input id="password" type="password" name="StaffPassword" placeholder="Password">
+                <div class="error"></div>
+                <p>password must include number and symbol #, !, ?</p>
+            </div>
+            <div class="inputBox">
+                <label for="">Position</label>
+                <br>
+                <select name="StaffPosition" id="" required>
+                    <option value="Receptionist">Receptionist</option>
+                    <option value="Manager">Manager</option>
+                    <option value="Front Desk">Front Desk</option>
+                    <option value="Housekeeping">Housekeeping</option>
+                    <option value="Concierge">Concierge</option>
+                </select>
+            </div>
+            <div class="button">
+                <input type="submit" value="Submit" class="buttonPrimary">
+            </div>
+            <div class="links">
+                <a href="/login">return</a>
+                <a href="/">back to home</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

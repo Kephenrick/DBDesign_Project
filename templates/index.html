@@ -23,22 +23,24 @@
     </section>
 
     <main>
-        {% for row in locations %}
+        <div class="column">
+            {% for row in locations %}
 
-        <div class="region">
-            <h2>{{ row['Location'] }}</h2>
-            <hr>
-            <img src="{{ url_for('static', filename='/img/placeholder2.jpg') }}" alt="placeholder">
-            <div class="container">
-                <h3><b>{{ row['LocationName'] }}</b></h3>
-                <p>{{ row['LocationDescription'] }}</p>
+            <div class="region">
+                <h2>{{ row['Location'] }}</h2>
+                <hr>
+                <img src="{{ url_for('static', filename='/img/placeholder2.jpg') }}" alt="placeholder">
+                <div class="container">
+                    <h3><b>{{ row['LocationName'] }}</b></h3>
+                    <p>{{ row['LocationDescription'] }}</p>
+                </div>
+                <div class="regionButt">
+                    <a href="/add/{{ row['LocationID'] }}" class="buttonPrimary">Book</a>
+                </div>
             </div>
-            <div class="regionButt">
-                <a href="/add/{{ row['LocationID'] }}" class="buttonPrimary">Book</a>
-            </div>
+
+            {% endfor %}
         </div>
-
-        {% endfor %}
 
         <div class="newsletter">
             <h2>Newsletter</h2>

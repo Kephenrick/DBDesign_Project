@@ -1,11 +1,13 @@
 from flask import Flask, render_template, session, request, redirect, url_for
 from flaskext.mysql import MySQL
+from flask_bcrypt import Bcrypt
 import pymysql
 import pymysql.cursors
 
 mysql = MySQL()
 app = Flask(__name__, template_folder='templates')
 app.secret_key = 'secretkey'
+bcrypt = Bcrypt(app)
 
 app.config['MYSQL_DATABASE_USER'] = 'root'
 app.config['MYSQL_DATABASE_DB'] = 'dbdesignfinal'
@@ -201,13 +203,25 @@ def addBooking(id):
     text = ''
     conn = mysql.connect()
     cur = conn.cursor(pymysql.cursors.DictCursor)
-    cur.execute("SELECT * FROM msreservation mr JOIN mslocation ml ON ml.LocationID = mr.LocationID JOIN msroom rm ON rm.RoomID = mr.RoomID WHERE mr.LocationID = %s", id)
+    cur.execute("SELECT * FROM mslocation WHERE LocationID = %s", id)
     data = cur.fetchone()
 
     cur.execute("SELECT * FROM msroom")
     rooms = cur.fetchall()
     
     return render_template('addBooking.html', data=data, rooms=rooms, text=text)
+
+@app.route('/add2/<int:id>/<int:id2>', methods=['GET', 'POST'])
+def addBookingForm(id, id2):
+    conn = mysql.connect()
+    cur = conn.cursor(pymysql.cursors.DictCursor)
+    cur.execute("SELECT * FROM mslocation WHERE LocationID = %s", id)
+    data = cur.fetchone()
+
+    cur.execute("SELECT * FROM msroom WHERE RoomID = %s", id2)
+    rooms = cur.fetchone()
+    
+    return render_template('addBooking2.html', data=data, rooms=rooms)
 
 @app.route('/add/<int:id>/<int:id2>', methods=['GET', 'POST'])
 def addBooking2(id, id2):
@@ -232,19 +246,24 @@ def userLogin():
     if request.method == 'POST' and 'GuestUsername' in request.form and 'GuestPassword' in request.form :
         username = request.form['GuestUsername']
         password = request.form['GuestPassword']
-        conn = mysql.connect()
-        cur = conn.cursor(pymysql.cursors.DictCursor)
-        cur.execute("SELECT * FROM msguest WHERE GuestName = %s AND GuestPass = %s",(username, password,))
-        user = cur.fetchone()
 
-        if user:
-            session['loggedin'] = True
-            session['id'] = user['GuestID']
-            session['username'] = user['GuestName']
-            cur.close()
-            return redirect(url_for('home'))
-        else:
-            text = 'incorrect username/password!'
+        hashedPass = bcrypt.generate_password_hash(password).decode('utf-8')
+        validPass = bcrypt.check_password_hash(hashedPass, password)
+
+        if validPass:  
+            conn = mysql.connect()
+            cur = conn.cursor(pymysql.cursors.DictCursor)
+            cur.execute("SELECT * FROM msguest WHERE GuestName = %s",(username,))
+            user = cur.fetchone()
+
+            if user:
+                session['loggedin'] = True
+                session['id'] = user['GuestID']
+                session['username'] = user['GuestName']
+                cur.close()
+                return redirect(url_for('home'))
+            else:
+                text = 'incorrect username/password!'
     elif request.method == 'POST':
         text = "Fill in the forms"
 
@@ -256,25 +275,30 @@ def adminLogin():
     if request.method == 'POST' and 'StaffUsername' in request.form and 'StaffPassword' in request.form :
         username = request.form['StaffUsername']
         password = request.form['StaffPassword']
-        conn = mysql.connect()
-        cur = conn.cursor(pymysql.cursors.DictCursor)
-        cur.execute("SELECT * FROM msstaff WHERE StaffName = %s AND StaffPass = %s",(username, password,))
-        user = cur.fetchone()
 
-        if user:
-            session['loggedinn'] = True
-            session['id'] = user['StaffID']
-            session['username'] = user['StaffName']
+        hashedPass = bcrypt.generate_password_hash(password).decode('utf-8')
+        validPass = bcrypt.check_password_hash(hashedPass, password)
 
+        if validPass:
             conn = mysql.connect()
             cur = conn.cursor(pymysql.cursors.DictCursor)
-            cur.execute("SELECT * FROM msreservation")
-            data = cur.fetchall()
-            cur.close
+            cur.execute("SELECT * FROM msstaff WHERE StaffName = %s",(username,))
+            user = cur.fetchone()
 
-            return redirect(url_for('adminHome'))
-        else:
-            text = 'incorrect username/password!'
+            if user:
+                session['loggedinn'] = True
+                session['id'] = user['StaffID']
+                session['username'] = user['StaffName']
+
+                conn = mysql.connect()
+                cur = conn.cursor(pymysql.cursors.DictCursor)
+                cur.execute("SELECT * FROM msreservation")
+                data = cur.fetchall()
+                cur.close
+
+                return redirect(url_for('adminHome'))
+            else:
+                text = 'incorrect username/password!'
     elif request.method == 'POST':
         text = "Fill in the forms"
 
@@ -299,6 +323,8 @@ def register():
         password = request.form['GuestPassword']
         gender = request.form['GuestGender']
 
+        hashedPass = bcrypt.generate_password_hash(password).decode('utf-8')
+
         conn = mysql.connect()
         cur = conn.cursor(pymysql.cursors.DictCursor)
         cur.execute(" SELECT * FROM msguest WHERE GuestName = %s OR Email = %s",(username,email,))
@@ -307,12 +333,32 @@ def register():
         if accounts:
             text = "Account already exists"
         else:
-            cur.execute("INSERT INTO msguest VALUES(NULL, %s, %s, %s, %s, %s)", (username, password, phone, gender, email,))
+            cur.execute("INSERT INTO msguest VALUES(NULL, %s, %s, %s, %s, %s)", (username, hashedPass, phone, gender, email,))
             conn.commit()
             text = "Account successfully created!"    
     elif request.method=='POST':
         text = "Fill in the forms"
     return render_template('register.html',text=text)
+
+@app.route('/register/admin', methods=['GET', 'POST'])
+def registerAdmin():
+    text = ''
+    if request.method == 'POST' and 'StaffUsername' in request.form and 'StaffPhone' in request.form and 'StaffPassword' in request.form and 'StaffPosition' in request.form:
+        username = request.form['StaffUsername']
+        phone = request.form['StaffPhone']
+        password = request.form['StaffPassword']
+        position = request.form['StaffPosition']
+
+        hashedPass = bcrypt.generate_password_hash(password).decode('utf-8')
+
+        conn = mysql.connect()
+        cur = conn.cursor(pymysql.cursors.DictCursor)
+        cur.execute("INSERT INTO msstaff VALUES(NULL, %s, %s, %s, %s)", (username, hashedPass, phone, position,))
+        conn.commit()
+        text = "Account successfully created!"    
+    elif request.method=='POST':
+        text = "Fill in the forms"
+    return render_template('adminRegister.html',text=text)
 
 if __name__ == '__main__':
     app.static_folder = 'static'

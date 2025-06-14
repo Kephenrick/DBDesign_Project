@@ -17,7 +17,7 @@
     
     <section class="hero">
         <div class="box">
-            <h1>Region Name</h1>
+            <h1>HOTEL BOOKING!</h1>
             <p>Book your hotel room now to get the best possible vacation!</p>
         </div>
     </section>
@@ -48,46 +48,36 @@
         </div>
         <hr>
         <div class="detail">
-            <h2><b>Room</b></h2>
-            <hr>
-            {% for row in rooms %}
-
-            <div class="block">
-                <div class="detailer">
-                    <h3>{{ row['RoomType'] }}</h3>
-                    <p>price: {{ row['RoomPrice'] }}</p>
-                </div>
-                <form id="addForm" action="/add/{{ data['LocationID'] }}/{{ row['RoomID'] }}" method="post">
-                    <div class="input-control">
-                        <label for="">Check in date: </label>
-                        <input type="date" name="CheckIn" id="checkin" required>
-                        <br>
-                        <label for="">Check out date: </label>
-                        <input type="date" name="CheckOut" id="checkout" required>
-                        <br>
-                        <div class="error"></div>
-                    </div>
-                    <div class="input-control">
-                        <label for="">Payment Type: </label>
-                        <select name="PaymentType" id="payment" required>
-                        <option value="BankMega">Mega Mastercard</option>
-                        <option value="Paypal">Paypal</option>
-                        <option value="BCA">BCA</option>
-                        </select>
-                        <br>
-                    </div>
-
-                    <br>
-                    
-                    <input type="submit" value="Book" class="buttonPrimary">
-                </form>
+            <div class="room">
+                <h2><b>Room</b></h2>
+                <hr>
             </div>
-            <br>
-            <hr>
+            <div class="blockContainer">
+            {% for row in rooms %}
+                <div class="region">
+                    <div class="container">
+                        <h3>{{ row['RoomType'] }}</h3>
+                        <img src="{{ url_for('static', filename='/img/single.jpg') }}" alt="placeholder">
+                        <label for="">Room Price</label>
+                        <p>Rp {{ row['RoomPrice'] }},00</p>
+                    </div>
 
+                    <div class="bookLink">
+                        <a href="/add2/{{ data['LocationID'] }}/{{ row['RoomID'] }}" class="buttonPrimary">Book</a>
+                    </div>
+                </div>
             {% endfor %}
+            </div>
         </div>
     </main>
+
+    <footer>
+        <div class="footerLink">
+            <a href="/">Find Hotel</a>
+            <a href="https://www.instagram.com">Contact Us</a>
+        </div>
+        <p>&copy; 2025 Mercury Hotel</p>
+    </footer>
     
     {% endblock %}
 </body>

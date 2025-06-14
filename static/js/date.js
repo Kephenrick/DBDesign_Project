@@ -33,6 +33,8 @@ const dateValidate = () => {
 
     if (checkinDate < today){
         setError(checkout, 'Check in cannot be before today');
+    } else if (checkoutDate < today){
+        setError(checkout, 'Check out cannot be before today');
     } else if (checkinDate > checkoutDate){
         setError(checkout, 'Check out date should be after check in date');
     } else{

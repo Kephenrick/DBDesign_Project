@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script language="javascript" type="text/javascript">
+        window.history.forward();
+    </script>
+    <script src="{{ url_for('static', filename='/js/date.js') }}" defer></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/base.css') }}">
+    <title>Adding</title>
+</head>
+<body>
+    {% extends 'base.html' %}
+
+    {% block content %}
+    
+    <section class="hero">
+        <div class="box">
+            <h1>Region Name</h1>
+            <p>Book your hotel room now to get the best possible vacation!</p>
+        </div>
+    </section>
+
+    <main class="addingForm">
+        <div class="wrapper">
+            <h1>ADD FORM</h1>
+            <form id="addForm" action="/add/{{ data['LocationID'] }}/{{ rooms['RoomID'] }}" method="post">
+                <label for="">Room Type: {{ rooms['RoomType'] }}</label>
+                <div class="input-control">
+                    <label for="">Check in date: </label>
+                    <input type="date" name="CheckIn" id="checkin" required>
+                    <br>
+                    <label for="">Check out date: </label>
+                    <input type="date" name="CheckOut" id="checkout" required>
+                    <br>
+                    <div class="error"></div>
+                </div>
+                <div class="input-control">
+                    <label for="">Payment Type: </label>
+                    <select name="PaymentType" id="payment" required>
+                    <option value="BankMega">Mega Mastercard</option>
+                    <option value="Paypal">Paypal</option>
+                    <option value="BCA">BCA</option>
+                    </select>
+                    <br>
+                </div>
+                <br>
+                
+                <input type="submit" value="Book" class="buttonPrimary">
+                <div>
+                    <a href="/add/{{ data['LocationID'] }}">return</a>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footerLink">
+            <a href="/">Find Hotel</a>
+            <a href="https://www.instagram.com">Contact Us</a>
+        </div>
+        <p>&copy; 2025 Mercury Hotel</p>
+    </footer>
+    
+    {% endblock %}
+</body>
+</html>
